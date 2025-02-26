@@ -22,11 +22,11 @@ import lombok.Setter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TrieNode<T> {
+public class TrieNode<V> {
     @Setter
-    private T data;
+    private V val;
 
-    private Map<T, TrieNode<T>> children;
+    private Map<V, TrieNode<V>> children;
 
     @Setter
     @Getter
@@ -36,16 +36,16 @@ public class TrieNode<T> {
         this(null);
     }
 
-    public TrieNode(T data) {
-        this.data = data;
+    public TrieNode(V val) {
+        this.val = val;
         this.children = new HashMap<>();
     }
 
-    public T data() {
-        return data;
+    public V data() {
+        return val;
     }
 
-    public Map<T, TrieNode<T>> children() {
+    public Map<V, TrieNode<V>> children() {
         return children;
     }
 }

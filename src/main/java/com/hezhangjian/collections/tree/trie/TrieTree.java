@@ -40,7 +40,7 @@ public class TrieTree<T> {
         }
 
         current.setEnd(true);
-        current.setData(list.get(list.size() - 1));
+        current.setVal(list.get(list.size() - 1));
     }
 
     public boolean contains(@NotNull List<T> list) {
