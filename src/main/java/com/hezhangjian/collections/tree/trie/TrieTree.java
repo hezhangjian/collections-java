@@ -91,7 +91,7 @@ public class TrieTree<T> {
                 } else {
                     aux = auxList.get(i - 1);
                 }
-                aux.children().remove(node.data());
+                aux.children().remove(node.val());
             } else {
                 node.setEnd(false);
                 break;

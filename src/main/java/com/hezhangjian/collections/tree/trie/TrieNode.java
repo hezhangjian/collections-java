@@ -23,10 +23,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TrieNode<V> {
+    private final Map<V, TrieNode<V>> children;
+
     @Setter
     private V val;
-
-    private Map<V, TrieNode<V>> children;
 
     @Setter
     @Getter
@@ -41,7 +41,7 @@ public class TrieNode<V> {
         this.children = new HashMap<>();
     }
 
-    public V data() {
+    public V val() {
         return val;
     }
 
