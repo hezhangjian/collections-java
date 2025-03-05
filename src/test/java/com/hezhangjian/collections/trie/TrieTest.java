@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hezhangjian.collections.tree.trie;
+package com.hezhangjian.collections.trie;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,11 +23,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-class TrieTreeTest {
+class TrieTest {
     @Test
     void testInsertAndContains_singleElement() {
         List<Character> sequence = Collections.singletonList('a');
-        TrieTree<Character> trie = new TrieTree<>();
+        Trie<Character> trie = new Trie<>();
         trie.insert(sequence);
 
         Assertions.assertTrue(trie.contains(sequence));
@@ -39,7 +39,7 @@ class TrieTreeTest {
         List<Character> cat = Arrays.asList('c', 'a', 't');
         List<Character> car = Arrays.asList('c', 'a', 'r');
 
-        TrieTree<Character> trie = new TrieTree<>();
+        Trie<Character> trie = new Trie<>();
         trie.insert(cat);
         trie.insert(car);
 
@@ -52,7 +52,7 @@ class TrieTreeTest {
     @Test
     void testContains_nonExistent() {
         List<Character> cat = Arrays.asList('c', 'a', 't');
-        TrieTree<Character> trie = new TrieTree<>();
+        Trie<Character> trie = new Trie<>();
         trie.insert(cat);
 
         Assertions.assertFalse(trie.contains(Arrays.asList('d', 'o', 'g')));
@@ -62,7 +62,7 @@ class TrieTreeTest {
     @Test
     void testDelete_singleElement() {
         List<Character> sequence = Collections.singletonList('a');
-        TrieTree<Character> trie = new TrieTree<>();
+        Trie<Character> trie = new Trie<>();
         trie.insert(sequence);
 
         Assertions.assertTrue(trie.delete(sequence));
@@ -73,7 +73,7 @@ class TrieTreeTest {
     void testDelete_multipleElements() {
         List<Character> cat = Arrays.asList('c', 'a', 't');
         List<Character> car = Arrays.asList('c', 'a', 'r');
-        TrieTree<Character> trie = new TrieTree<>();
+        Trie<Character> trie = new Trie<>();
         trie.insert(cat);
         trie.insert(car);
 
@@ -86,7 +86,7 @@ class TrieTreeTest {
     @Test
     void testDelete_nonExistent() {
         List<Character> cat = Arrays.asList('c', 'a', 't');
-        TrieTree<Character> trie = new TrieTree<>();
+        Trie<Character> trie = new Trie<>();
         trie.insert(cat);
 
         Assertions.assertFalse(trie.delete(Arrays.asList('d', 'o', 'g')));
@@ -98,7 +98,7 @@ class TrieTreeTest {
     @Test
     void testDelete_prefixOfExisting() {
         List<Character> cat = Arrays.asList('c', 'a', 't');
-        TrieTree<Character> trie = new TrieTree<>();
+        Trie<Character> trie = new Trie<>();
         trie.insert(cat);
 
         List<Character> ca = Arrays.asList('c', 'a');
@@ -114,7 +114,7 @@ class TrieTreeTest {
         List<Character> dog = Arrays.asList('d', 'o', 'g');
 
         // Insert multiple sequences
-        TrieTree<Character> trie = new TrieTree<>();
+        Trie<Character> trie = new Trie<>();
         trie.insert(cat);
         trie.insert(car);
         trie.insert(dog);

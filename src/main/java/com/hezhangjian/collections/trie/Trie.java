@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.hezhangjian.collections.tree.trie;
+package com.hezhangjian.collections.trie;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrieTree<T> {
+public class Trie<T> {
     private final TrieNode<T> root;
 
-    public TrieTree() {
+    public Trie() {
         this.root = new TrieNode<>();
     }
 
