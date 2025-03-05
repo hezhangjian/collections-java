@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hezhangjian.collections.tree.trie;
+package com.hezhangjian.collections.trie;
 
 import lombok.Getter;
 import lombok.Setter;
