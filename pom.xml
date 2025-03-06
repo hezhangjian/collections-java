@@ -21,7 +21,7 @@
 
     <groupId>com.hezhangjian</groupId>
     <artifactId>collections</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -233,6 +233,8 @@
         </plugins>
     </build>
 
+    <name>Collections</name>
+    <description>Collections</description>
     <url>https://github.com/hezhangjian/collections-java</url>
     <licenses>
         <license>
