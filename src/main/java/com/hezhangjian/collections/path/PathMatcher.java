@@ -1,5 +1,7 @@
 package com.hezhangjian.collections.path;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,20 +21,20 @@ public class PathMatcher {
         this(DEFAULT_PATH_SEPARATOR);
     }
 
-    public PathMatcher(String separator) {
+    public PathMatcher(@NotNull String separator) {
         this.separator = separator;
         this.patternMap = new HashMap<>();
     }
 
-    public void addPattern(String pattern) {
+    public void addPattern(@NotNull String pattern) {
         patternMap.put(pattern, pattern.split(separator));
     }
 
-    public void removePattern(String pattern) {
+    public void removePattern(@NotNull String pattern) {
         patternMap.remove(pattern);
     }
 
-    public boolean match(String pattern, String path) {
+    public boolean match(@NotNull String pattern, @NotNull String path) {
         String[] patternParts = patternMap.get(pattern);
         if (patternParts == null) {
             return false;
@@ -41,7 +43,7 @@ public class PathMatcher {
         return match(patternParts, pathParts);
     }
 
-    public List<String> findMatchingPattern(String path) {
+    public @NotNull List<String> findMatchingPattern(@NotNull String path) {
         List<String> result = new ArrayList<>();
         String[] pathParts = path.split(separator);
         for (Map.Entry<String, String[]> entry : patternMap.entrySet()) {
@@ -54,7 +56,7 @@ public class PathMatcher {
         return result;
     }
 
-    private boolean match(String[] patternParts, String[] pathParts) {
+    private boolean match(@NotNull String[] patternParts, @NotNull String[] pathParts) {
         if (pathParts.length < patternParts.length) {
             return false;
         }
