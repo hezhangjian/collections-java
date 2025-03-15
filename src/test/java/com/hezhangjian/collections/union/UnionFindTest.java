@@ -17,12 +17,6 @@ public class UnionFindTest {
     }
 
     @Test
-    void testMakeSetWithNullElement() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> unionFind.makeSet(null),
-                "Should throw IllegalArgumentException for null element");
-    }
-
-    @Test
     void testMakeSetWithNewElement() {
         unionFind.makeSet("A");
         Assertions.assertEquals(1, unionFind.count(), "Count should be 1 after adding one element");

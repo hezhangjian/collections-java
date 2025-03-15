@@ -18,6 +18,8 @@ package com.hezhangjian.collections.trie;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,10 +43,12 @@ public class TrieNode<V> {
         this.children = new HashMap<>();
     }
 
+    @Nullable
     public V val() {
         return val;
     }
 
+    @NotNull
     public Map<V, TrieNode<V>> children() {
         return children;
     }
