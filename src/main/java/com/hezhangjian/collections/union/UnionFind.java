@@ -1,5 +1,7 @@
 package com.hezhangjian.collections.union;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -22,10 +24,7 @@ public class UnionFind<T> {
      * Creates a new set containing the given element if it doesn't exist.
      * @param t the element to add
      */
-    public void makeSet(T t) {
-        if (t == null) {
-            throw new IllegalArgumentException("element cannot be null");
-        }
+    public void makeSet(@NotNull T t) {
         if (!map.containsKey(t)) {
             map.put(t, t);
             count++;
@@ -39,10 +38,7 @@ public class UnionFind<T> {
      * @return the root element of the set
      * @throws IllegalArgumentException if the element is not found
      */
-    public T find(T t) {
-        if (t == null) {
-            throw new IllegalArgumentException("Element cannot be null");
-        }
+    public T find(@NotNull T t) {
         if (!map.containsKey(t)) {
             throw new IllegalArgumentException("Element not found: " + t);
         }
