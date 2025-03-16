@@ -19,4 +19,15 @@ public class PathMatcherTest {
 
         Assertions.assertEquals(0, matcher.findMatchingPattern("/api/v1/orders").size(), "Non-existent path should return empty list");
     }
+
+    @Test
+    void testFindBestMatchingPattern() {
+        PathMatcher matcher = new PathMatcher();
+        matcher.addPattern("/api/v1/users");
+        matcher.addPattern("/api/v1/*");
+        matcher.addPattern("/api/v1/*/play-football");
+
+        Assertions.assertEquals("/api/v1/users", matcher.findBestMatchingPattern("/api/v1/users"));
+        Assertions.assertEquals("/api/v1/*/play-football", matcher.findBestMatchingPattern("/api/v1/users/play-football"));
+    }
 }
