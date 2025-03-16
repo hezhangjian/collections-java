@@ -19,7 +19,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>io.github.hezhangjian</groupId>
     <artifactId>collections</artifactId>
-    <version>0.1.1</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
