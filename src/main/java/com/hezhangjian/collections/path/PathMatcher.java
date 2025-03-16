@@ -38,7 +38,7 @@ public class PathMatcher {
     public boolean match(@NotNull String pattern, @NotNull String path) {
         String[] patternParts = patternMap.get(pattern);
         if (patternParts == null) {
-            return false;
+            patternParts = pattern.split(separator);
         }
         String[] pathParts = path.split(separator);
         return match(patternParts, pathParts);
@@ -108,6 +108,11 @@ public class PathMatcher {
                 pathIdxStart++;
             } else {
                 return false;
+            }
+        }
+        if (patternIdxStart == patternIdxEnd) {
+            if (patternParts[patternIdxEnd].equals("**")) {
+                return true;
             }
         }
         return patternIdxStart > patternIdxEnd && pathIdxStart > pathIdxEnd;
