@@ -10,6 +10,9 @@ import java.util.Map;
 
 /**
  * {@link PathMatcher} implementation for path matching, typically used for url matching.
+ * This implementation supports Ant-style path patterns, including single-segment wildcards ({@code *}) and
+ * multi-segment wildcards ({@code **}). Patterns and paths are split into parts using a configurable separator
+ * (defaulting to {@code "/"}).
  */
 public class PathMatcher {
     private static final String DEFAULT_PATH_SEPARATOR = "/";
@@ -18,23 +21,40 @@ public class PathMatcher {
 
     private final Map<String, String[]> patternMap;
 
+    /**
+     * Constructs a new {@code PathMatcher} with the default path separator ({@code "/"}).
+     */
     public PathMatcher() {
         this(DEFAULT_PATH_SEPARATOR);
     }
 
+    /**
+     * Constructs a new {@code PathMatcher} with the specified path separator.
+     * @param separator the separator to use for splitting patterns and paths (e.g., "/")
+     */
     public PathMatcher(@NotNull String separator) {
         this.separator = separator;
         this.patternMap = new HashMap<>();
     }
 
+    /**
+     * Adds a pattern to the matcher for later use in matching operations.
+     */
     public void addPattern(@NotNull String pattern) {
         patternMap.put(pattern, pattern.split(separator));
     }
 
+    /**
+     * Removes a pattern from the matcher.
+     */
     public void removePattern(@NotNull String pattern) {
         patternMap.remove(pattern);
     }
 
+    /**
+     * Checks if the given path matches the specified pattern.
+     * The pattern can include wildcards such as {@code *} (matches a single segment) and {@code **}
+     */
     public boolean match(@NotNull String pattern, @NotNull String path) {
         String[] patternParts = patternMap.get(pattern);
         if (patternParts == null) {
@@ -44,6 +64,10 @@ public class PathMatcher {
         return match(patternParts, pathParts);
     }
 
+    /**
+     * Finds all patterns that match the given path.
+     * This method iterates over all stored patterns and returns those that match the path.
+     */
     public @NotNull List<String> findMatchingPattern(@NotNull String path) {
         String[] pathParts = path.split(separator);
         List<String> result = new ArrayList<>();
