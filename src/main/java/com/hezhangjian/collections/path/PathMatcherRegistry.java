@@ -61,7 +61,7 @@ public class PathMatcherRegistry {
     public boolean match(@NotNull String pattern, @NotNull String path) {
         String[] patternParts = patternMap.get(pattern);
         if (patternParts == null) {
-            patternParts = pattern.split(separator);
+            return false;
         }
         String[] pathParts = path.split(separator);
         return PathMatcher.match(patternParts, pathParts);
