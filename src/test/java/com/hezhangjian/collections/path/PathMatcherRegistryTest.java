@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class PathMatcherTest {
+public class PathMatcherRegistryTest {
     @Test
     void testExactlyMatch() {
-        PathMatcher matcher = new PathMatcher();
+        PathMatcherRegistry matcher = new PathMatcherRegistry();
         matcher.addPattern("/api/v1/users");
         matcher.addPattern("/api/v1/products");
 
@@ -26,7 +26,7 @@ public class PathMatcherTest {
 
     @Test
     void testWildcardMatch() {
-        PathMatcher matcher = new PathMatcher();
+        PathMatcherRegistry matcher = new PathMatcherRegistry();
 
         // Add patterns with single wildcards
         matcher.addPattern("/api/*/users");
@@ -55,7 +55,7 @@ public class PathMatcherTest {
 
     @Test
     void testDoubleWildcardMatch() {
-        PathMatcher matcher = new PathMatcher();
+        PathMatcherRegistry matcher = new PathMatcherRegistry();
 
         // Add patterns with double wildcards
         matcher.addPattern("/api/**/users");
@@ -90,7 +90,7 @@ public class PathMatcherTest {
 
     @Test
     void testFindBestMatchingPattern() {
-        PathMatcher matcher = new PathMatcher();
+        PathMatcherRegistry matcher = new PathMatcherRegistry();
         matcher.addPattern("/api/v1/users");
         matcher.addPattern("/api/v1/*");
         matcher.addPattern("/api/v1/*/play-football");
