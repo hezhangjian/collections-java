@@ -32,13 +32,9 @@ The `PathMatcher` class provides a simple yet powerful way to match paths (e.g.,
 #### Usage Example
 
 ```java
-PathMatcher matcher = new PathMatcher();
-matcher.addPattern("/api/users/*");
-matcher.addPattern("/api/posts");
-
-System.out.println(matcher.match("/api/users/123", "/api/users/*")); // true
-System.out.println(matcher.match("/api/posts", "/api/posts"));       // true
-System.out.println(matcher.findMatchingPattern("/api/users/123"));   // ["/api/users/*"]
+System.out.println(PathMatcher.match("/api/users/123", "/api/users/*")); // true
+System.out.println(PathMatcher.match("/api/posts", "/api/posts"));       // true
+System.out.println(PathMatcher.findMatchingPattern("/api/users/123"));   // ["/api/users/*"]
 ```
 
 ### Trie
