@@ -55,19 +55,6 @@ public class PathMatcherRegistry {
     }
 
     /**
-     * Checks if the given path matches the specified pattern.
-     * The pattern can include wildcards such as {@code *} (matches a single segment) and {@code **}
-     */
-    public boolean match(@NotNull String pattern, @NotNull String path) {
-        String[] patternParts = patternMap.get(pattern);
-        if (patternParts == null) {
-            return false;
-        }
-        String[] pathParts = path.split(separator);
-        return PathMatcher.match(patternParts, pathParts);
-    }
-
-    /**
      * Finds all patterns that match the given path.
      * This method iterates over all stored patterns and returns those that match the path.
      */
