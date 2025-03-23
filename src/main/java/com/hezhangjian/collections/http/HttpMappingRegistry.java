@@ -1,6 +1,7 @@
 package com.hezhangjian.collections.http;
 
 import com.hezhangjian.collections.path.PathMatcher;
+import com.hezhangjian.collections.path.PathPatternComparator;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -68,29 +69,7 @@ public class HttpMappingRegistry {
     public @Nullable HttpMapping findBestMatchingMapping(@NotNull String method, @NotNull String path) {
         List<HttpMapping> matchMappings = findMatchMappings(method, path);
         return matchMappings.stream()
-            .min((m1, m2) -> {
-                    String[] parts1 = mappingMap.get(m1);
-                    String[] parts2 = mappingMap.get(m2);
-                    int loopCount = Math.min(parts1.length, parts2.length);
-                    for (int i = 0; i < loopCount; i++) {
-                        if (parts1[i].equals(parts2[i])) {
-                            continue;
-                        }
-                        if (parts1[i].equals("**")) {
-                            return 1;
-                        }
-                        if (parts2[i].equals("**")) {
-                            return -1;
-                        }
-                        if (parts1[i].equals("*")) {
-                            return 1;
-                        }
-                        if (parts2[i].equals("*")) {
-                            return -1;
-                        }
-                    }
-                    return parts2.length - parts1.length;
-            })
+            .min((m1, m2) -> PathPatternComparator.getInstance().compare(mappingMap.get(m1), mappingMap.get(m2)))
             .orElse(null);
     }
 }
