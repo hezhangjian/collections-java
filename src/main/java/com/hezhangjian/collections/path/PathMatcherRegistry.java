@@ -80,29 +80,7 @@ public class PathMatcherRegistry {
     public @Nullable String findBestMatchingPattern(@NotNull String path) {
         List<String> matchingPatterns = findMatchingPattern(path);
         return matchingPatterns.stream()
-                .min((p1, p2) -> {
-                    String[] parts1 = patternMap.get(p1);
-                    String[] parts2 = patternMap.get(p2);
-                    int loopCount = Math.min(parts1.length, parts2.length);
-                    for (int i = 0; i < loopCount; i++) {
-                        if (parts1[i].equals(parts2[i])) {
-                            continue;
-                        }
-                        if (parts1[i].equals("**")) {
-                            return 1;
-                        }
-                        if (parts2[i].equals("**")) {
-                            return -1;
-                        }
-                        if (parts1[i].equals("*")) {
-                            return 1;
-                        }
-                        if (parts2[i].equals("*")) {
-                            return -1;
-                        }
-                    }
-                    return parts2.length - parts1.length;
-                })
+                .min((p1, p2) -> PathPatternComparator.getInstance().compare(patternMap.get(p1), patternMap.get(p2)))
                 .orElse(null);
     }
 }
